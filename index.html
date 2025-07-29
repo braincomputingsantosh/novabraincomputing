@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NOVA Brain Computing - Pioneering Neural Intelligence</title>
+    <title>NOVA Brain Computing - Neuroscience Talk Sessions</title>
     <style>
         * {
             margin: 0;
@@ -14,9 +14,12 @@
         :root {
             --primary-color: #00d4ff;
             --secondary-color: #ff00ff;
+            --accent-color: #00ffff;
             --dark-bg: #0a0a0a;
+            --darker-bg: #050505;
             --text-light: #ffffff;
             --text-gray: #a0a0a0;
+            --card-bg: rgba(255, 255, 255, 0.05);
         }
 
         body {
@@ -27,34 +30,96 @@
             line-height: 1.6;
         }
 
-        /* Neural Network Background Animation */
-        .neural-bg {
+        /* Cosmic Brain Background */
+        .cosmic-brain-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: var(--darker-bg);
+            overflow: hidden;
+        }
+
+        .cosmic-brain-bg::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            background-image: url('brain-image.jpg');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.2;
+            animation: cosmic-pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes cosmic-pulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1) rotate(0deg);
+                opacity: 0.2;
+            }
+            25% {
+                transform: translate(-50%, -50%) scale(1.1) rotate(5deg);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.05) rotate(-5deg);
+                opacity: 0.25;
+            }
+            75% {
+                transform: translate(-50%, -50%) scale(1.08) rotate(3deg);
+                opacity: 0.35;
+            }
+        }
+
+        /* Particle Stars */
+        .stars {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            opacity: 0.3;
-            background: radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
         }
 
-        .neural-bg::before {
-            content: '';
+        .star {
             position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 4s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        /* Neural Network Lines */
+        .neural-lines {
+            position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><filter id="glow"><feGaussianBlur stdDeviation="3" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g fill="none" stroke="%2300d4ff" stroke-width="0.5" opacity="0.3" filter="url(%23glow)"><circle cx="100" cy="100" r="80"/><circle cx="300" cy="200" r="60"/><circle cx="500" cy="150" r="70"/><circle cx="700" cy="250" r="90"/><circle cx="900" cy="180" r="65"/><circle cx="200" cy="400" r="85"/><circle cx="600" cy="450" r="75"/><circle cx="800" cy="500" r="80"/><circle cx="400" cy="600" r="70"/><circle cx="1000" cy="400" r="85"/><line x1="100" y1="100" x2="300" y2="200"/><line x1="300" y1="200" x2="500" y2="150"/><line x1="500" y1="150" x2="700" y2="250"/><line x1="700" y1="250" x2="900" y2="180"/><line x1="200" y1="400" x2="600" y2="450"/><line x1="600" y1="450" x2="800" y2="500"/><line x1="100" y1="100" x2="200" y2="400"/><line x1="500" y1="150" x2="600" y2="450"/><line x1="700" y1="250" x2="800" y2="500"/><line x1="300" y1="200" x2="400" y2="600"/><line x1="900" y1="180" x2="1000" y2="400"/></g></svg>');
-            background-size: cover;
-            background-position: center;
-            animation: pulse 4s ease-in-out infinite;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+            background-image: 
+                linear-gradient(45deg, var(--primary-color) 1px, transparent 1px),
+                linear-gradient(-45deg, var(--secondary-color) 1px, transparent 1px);
+            background-size: 100px 100px;
+            animation: neural-flow 20s linear infinite;
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.6; }
+        @keyframes neural-flow {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(100px, 100px); }
         }
 
         /* Navigation */
@@ -63,14 +128,14 @@
             top: 0;
             width: 100%;
             padding: 20px 50px;
-            background: linear-gradient(to bottom, rgba(10, 10, 10, 0.9), transparent);
+            background: linear-gradient(to bottom, rgba(10, 10, 10, 0.95), transparent);
             backdrop-filter: blur(10px);
             z-index: 1000;
             transition: all 0.3s ease;
         }
 
         nav.scrolled {
-            background: rgba(10, 10, 10, 0.95);
+            background: rgba(10, 10, 10, 0.98);
             padding: 15px 50px;
         }
 
@@ -89,11 +154,24 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-decoration: none;
-            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
-        .logo:hover {
-            transform: scale(1.05);
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background-image: url('brain-image.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         .nav-links {
@@ -145,14 +223,14 @@
             font-size: clamp(3rem, 8vw, 6rem);
             font-weight: 900;
             margin-bottom: 20px;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--primary-color));
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--accent-color));
             background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: gradient 3s ease infinite;
+            animation: gradient-animate 3s ease infinite;
         }
 
-        @keyframes gradient {
+        @keyframes gradient-animate {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
@@ -238,69 +316,6 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* Features Grid */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            border-radius: 20px;
-            padding: 40px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            border-radius: 20px;
-            opacity: 0;
-            z-index: -1;
-            transition: opacity 0.3s ease;
-        }
-
-        .feature-card:hover::before {
-            opacity: 0.3;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            border-color: transparent;
-        }
-
-        .feature-icon {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-        }
-
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-
-        .feature-card p {
-            color: var(--text-gray);
-            line-height: 1.8;
-        }
-
         /* About Section */
         .about-content {
             display: grid;
@@ -318,27 +333,163 @@
         .about-visual {
             position: relative;
             height: 400px;
-            background: radial-gradient(circle at center, rgba(0, 212, 255, 0.2), transparent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .brain-icon-large {
+            width: 300px;
+            height: 300px;
+            background-image: url('brain-image.jpg');
+            background-size: cover;
+            background-position: center;
             border-radius: 20px;
+            animation: float-rotate 10s ease-in-out infinite;
+            box-shadow: 0 0 50px rgba(0, 212, 255, 0.3);
+        }
+
+        @keyframes float-rotate {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg) scale(1);
+            }
+            25% {
+                transform: translateY(-20px) rotate(10deg) scale(1.05);
+            }
+            50% {
+                transform: translateY(10px) rotate(-5deg) scale(1.02);
+            }
+            75% {
+                transform: translateY(-10px) rotate(5deg) scale(1.03);
+            }
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.3s ease;
+            position: relative;
             overflow: hidden;
         }
 
-        .brain-animation {
+        .card::before {
+            content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 300px;
-            height: 300px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><path fill="none" stroke="%2300d4ff" stroke-width="2" d="M200 100c-55 0-100 45-100 100s45 100 100 100 100-45 100-100-45-100-100-100zm-50 50c0-27.5 22.5-50 50-50m0 100c-27.5 0-50-22.5-50-50m50 50c0 27.5 22.5 50 50 50m0-100c27.5 0 50 22.5 50 50m-50-50v100m-70.7-70.7l141.4 141.4m0-141.4l-141.4 141.4" opacity="0.6"/></svg>');
-            background-size: contain;
-            background-repeat: no-repeat;
-            animation: rotate 20s linear infinite;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border-radius: 20px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
         }
 
-        @keyframes rotate {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(360deg); }
+        .card:hover::before {
+            opacity: 0.3;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: transparent;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .card-icon::before {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-image: url('brain-image.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            opacity: 0.9;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .card p {
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        .card p strong {
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Team Cards */
+        .team-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+        }
+
+        .team-avatar {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-avatar::after {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            width: 80%;
+            height: 80%;
+            background-image: url('brain-image.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            opacity: 0.2;
+            mix-blend-mode: screen;
         }
 
         /* Footer */
@@ -355,6 +506,11 @@
                 display: none;
             }
             
+            .logo-icon {
+                width: 30px;
+                height: 30px;
+            }
+            
             .about-content {
                 grid-template-columns: 1fr;
             }
@@ -368,56 +524,25 @@
                 align-items: center;
             }
         }
-
-        /* Particle Effect */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--primary-color);
-            border-radius: 50%;
-            opacity: 0.5;
-            animation: float 10s infinite ease-in-out;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) translateX(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.5;
-            }
-            90% {
-                opacity: 0.5;
-            }
-            50% {
-                transform: translateY(-100vh) translateX(100px);
-            }
-        }
     </style>
 </head>
 <body>
-    <!-- Neural Network Background -->
-    <div class="neural-bg"></div>
+    <!-- Cosmic Brain Background -->
+    <div class="cosmic-brain-bg"></div>
     
-    <!-- Particle Effects -->
-    <div class="particles" id="particles"></div>
+    <!-- Neural Lines -->
+    <div class="neural-lines"></div>
+    
+    <!-- Stars -->
+    <div class="stars" id="stars"></div>
 
     <!-- Navigation -->
     <nav id="navbar">
         <div class="nav-container">
-            <a href="#" class="logo">NOVA Brain Computing</a>
+            <a href="#" class="logo">
+                <div class="logo-icon"></div>
+                NOVA Brain Computing
+            </a>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#upcoming">Upcoming Talks</a></li>
@@ -432,9 +557,9 @@
     <section class="hero">
         <div class="hero-content">
             <h1>NOVA Brain Computing</h1>
-            <p class="hero-subtitle">Neuroscience Talk Sessions - Exploring the Frontiers of Brain and Computation</p>
+            <p class="hero-subtitle">Neuroscience Talk Sessions - Exploring the Cosmos of Consciousness</p>
             <div class="cta-buttons">
-                <a href="#upcoming" class="btn btn-primary">Upcoming Talks</a>
+                <a href="#upcoming" class="btn btn-primary">View August 2025 Talks</a>
                 <a href="https://www.meetup.com/" target="_blank" class="btn btn-secondary">Join Our Meetup</a>
             </div>
         </div>
@@ -445,37 +570,37 @@
         <h2 class="section-title">Neuroscience Talk Sessions</h2>
         <div class="about-content">
             <div class="about-text">
-                <p>Welcome to NOVA Brain Computing's Neuroscience Talk Sessions – a premier forum where leading researchers, scientists, and enthusiasts gather to explore the latest breakthroughs in neuroscience and brain-inspired computing.</p>
+                <p>Welcome to NOVA Brain Computing's Neuroscience Talk Sessions – where the mysteries of the mind meet the frontiers of technology. Our monthly gatherings bring together brilliant minds from neuroscience, AI, and computational biology to explore the cosmic complexity of the brain.</p>
                 <br>
-                <p>Our monthly talk sessions bring together interdisciplinary experts to share insights on neural networks, computational neuroscience, brain-computer interfaces, and the future of intelligent systems. Join us as we decode the mysteries of the brain and translate them into revolutionary computing paradigms.</p>
+                <p>Like the vast neural networks that spark consciousness, our community connects researchers, innovators, and curious minds. Join us as we journey through the universe of neurons, synapses, and the emergent phenomena that make us human.</p>
             </div>
             <div class="about-visual">
-                <div class="brain-animation"></div>
+                <div class="brain-icon-large"></div>
             </div>
         </div>
     </section>
 
     <!-- Upcoming Talks Section -->
     <section id="upcoming">
-        <h2 class="section-title">Upcoming Sessions - August 2025</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">📅</div>
+        <h2 class="section-title">August 2025 Sessions</h2>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon"></div>
                 <h3>Neural Plasticity & Learning</h3>
-                <p><strong>August 5, 2025 | 6:00 PM EST</strong><br>
-                Exploring how the brain's ability to reorganize itself can inspire adaptive AI systems and self-modifying algorithms.</p>
+                <p><strong>August 5, 2025 | 6:00 PM EST</strong></p>
+                <p>Exploring how the brain's ability to reorganize itself can inspire adaptive AI systems and self-modifying algorithms in the cosmic dance of learning.</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">🧬</div>
+            <div class="card">
+                <div class="card-icon"></div>
                 <h3>Neuromorphic Engineering</h3>
-                <p><strong>August 12, 2025 | 6:00 PM EST</strong><br>
-                Deep dive into hardware that mimics neural structures, featuring cutting-edge research in brain-inspired chip design.</p>
+                <p><strong>August 12, 2025 | 6:00 PM EST</strong></p>
+                <p>Deep dive into hardware that mimics neural structures, featuring cutting-edge research in brain-inspired chip design that captures the essence of biological computation.</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">🔮</div>
+            <div class="card">
+                <div class="card-icon"></div>
                 <h3>Consciousness & Computation</h3>
-                <p><strong>August 19, 2025 | 6:00 PM EST</strong><br>
-                A philosophical and technical exploration of consciousness emergence in biological and artificial systems.</p>
+                <p><strong>August 19, 2025 | 6:00 PM EST</strong></p>
+                <p>A philosophical and technical exploration of consciousness emergence in biological and artificial systems – where mind meets matter in the digital cosmos.</p>
             </div>
         </div>
         <div style="text-align: center; margin-top: 40px;">
@@ -486,19 +611,19 @@
     <!-- Topics Section -->
     <section id="topics">
         <h2 class="section-title">Our Focus Areas</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🧠</div>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon"></div>
                 <h3>Computational Neuroscience</h3>
                 <p>Mathematical models of neural systems, brain simulation techniques, and understanding neural coding principles through computational approaches.</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
+            <div class="card">
+                <div class="card-icon"></div>
                 <h3>Brain-Computer Interfaces</h3>
                 <p>Latest developments in direct neural interfaces, neuroprosthetics, and the future of human-machine interaction through brain signals.</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">🔬</div>
+            <div class="card">
+                <div class="card-icon"></div>
                 <h3>AI & Neural Networks</h3>
                 <p>How biological neural networks inspire artificial intelligence, deep learning architectures, and the path toward artificial general intelligence.</p>
             </div>
@@ -508,19 +633,19 @@
     <!-- Team Section -->
     <section id="team">
         <h2 class="section-title">Our Organizers</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">👨‍🔬</div>
+        <div class="cards-grid">
+            <div class="team-card">
+                <div class="team-avatar">SS</div>
                 <h3>Santosh Srinivasaiah</h3>
                 <p>Lead organizer with expertise in computational neuroscience and neural network architectures. Passionate about bridging theoretical neuroscience with practical applications.</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">👨‍💻</div>
+            <div class="team-card">
+                <div class="team-avatar">JT</div>
                 <h3>John Thomas</h3>
                 <p>Co-organizer specializing in brain-computer interfaces and neuromorphic engineering. Dedicated to fostering collaboration between neuroscientists and engineers.</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">👨‍🎓</div>
+            <div class="team-card">
+                <div class="team-avatar">K</div>
                 <h3>Kris</h3>
                 <p>Community lead focused on making neuroscience accessible to all. Coordinates educational initiatives and manages our growing community of brain enthusiasts.</p>
             </div>
@@ -528,8 +653,8 @@
     </section>
 
     <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 NOVA Brain Computing - Neuroscience Talk Sessions. Join us in exploring the frontiers of brain science.</p>
+    <footer id="contact">
+        <p>&copy; 2025 NOVA Brain Computing - Neuroscience Talk Sessions. Exploring the cosmos of consciousness.</p>
     </footer>
 
     <script>
@@ -543,15 +668,16 @@
             }
         });
 
-        // Generate particles
-        const particlesContainer = document.getElementById('particles');
-        for (let i = 0; i < 20; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 10 + 's';
-            particle.style.animationDuration = (10 + Math.random() * 10) + 's';
-            particlesContainer.appendChild(particle);
+        // Generate stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 4 + 's';
+            star.style.animationDuration = (3 + Math.random() * 2) + 's';
+            starsContainer.appendChild(star);
         }
 
         // Smooth scrolling
